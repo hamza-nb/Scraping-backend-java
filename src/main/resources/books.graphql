@@ -1,0 +1,56 @@
+schema {
+ query: Query
+}
+type Query {
+    scraping(data : scrapingQuery): Boolean
+    processData : Boolean
+    ExecuteAgentAlgo(data : [String]): Statistic
+    guessText(text : String): String
+    pca : String
+    downloadData : [Tweet]
+}
+
+input  scrapingQuery {
+    tags: [String]
+    beginDate: String
+    endDate: String
+}
+
+type Statistic {
+    id: String
+    nbrTrain: Int
+    nbrTest: Int
+    nbrBeforeProcess: Int
+    nbrAfterProcess: Int
+    nbrFeatures: Int
+    target: String
+    algoPredicted: [AlgoPredicted]
+    sentiments: [Sentiment]
+}
+type AlgoPredicted{
+    algorithm: String
+    predict: Float
+}
+type Sentiment{
+
+    id: String
+    negative: Int
+    neutral: Int
+    positive: Int
+    target: String
+
+}
+
+type Tweet {
+    id : String
+    tweets : String
+    date : Float
+    target : String
+    hashtags : String
+    likes : Int
+    retweets : Int
+}
+
+#{
+#    scraping(data : {tags : ["cc"] , beginDate : "d", endDate :"dd"} )
+#}
